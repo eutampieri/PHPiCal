@@ -65,29 +65,3 @@ class iCalendar{
         return $vcal;
     }
 }
-/*
-BEGIN:VCALENDAR
-VERSION:2.0
-PRODID:-//Apple Computer\, Inc//iCal 1.5//EN
-CALSCALE:GREGORIAN
-METHOD:PUBLISH*/
-/*
-BEGIN:VEVENT
-DTSTAMP:20040617T213331Z
-UID:id
-SEQUENCE:0
-DTSTART:20040402T150000Z
-SUMMARY:Listen to the same song over and over 100 times. Charge iPod. Ma
- ke new playlists in iTunes.
-DTEND:20040402T194500
-BEGIN:VALARM
-TRIGGER:-PT15M
-DESCRIPTION:Event reminder
-ACTION:DISPLAY
-END:VALARM
-END:VEVENT
-END:VCALENDAR
-*/
-$cal=new iCalendar();
-header("Content-Type: test/calendar");
-echo $cal->ical(json_decode('[{"start":1508432795,"end":1508436395,"desc":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse porttitor tincidunt mi posuere.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse."}]',true));
