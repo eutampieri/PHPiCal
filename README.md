@@ -1,6 +1,9 @@
 # PHPiCal
 This is a basic class used to create a compliant iCalendar ([RFC 5545](http://tools.ietf.org/html/rfc5545)). The support for the standard is very basic because the main purpose of the project is to create a simple way for PHP developers to create an iCalendar out of a list of events. The output of the first snippet (below) on an iPhone, iOS 11 looks like this:
-![Screenshot](screen.jpg)
+
+
+<img alt="Screenshot" src="screen.jpg" width=200>
+
 ## Installation
 Simply download `ical.php` and `require` it.
 ## Usage
@@ -18,9 +21,9 @@ The main method of the class is `ical()`, which accepts only one parameter, an a
 ```json
 [
     {
-        "start":int,
-        "end":int,
-        "desc":text
+        "start":1508432795,
+        "end":1508436795,
+        "desc":"text"
     }
 ]
 ```
