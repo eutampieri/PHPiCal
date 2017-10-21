@@ -8,6 +8,18 @@ class iCalendar{
     private function dt($epoch){
         return gmdate("Ymd\THis\Z",$epoch);
     }
+    private function id($evento){
+        $id=strval(dechex($evento["start"]));
+        $id=$id.str_pad(dechex(($evento["end"]-$evento["start"])%4095),3,"0",STR_PAD_LEFT);
+        $md=md5($evento["desc"]);
+        $crc=0;
+        for($i=0;$i<strlen($md);$i++){
+            $crc=$crc+ord($md[$i]);
+        }
+        $crc=$crc%255;
+        $id=$id.str_pad(dechex($crc),2,"0",STR_PAD_LEFT);
+        return $id;
+    }
     private function interval($secs){
         $s=$secs%60;
         $secs=intval($secs/60);
@@ -45,7 +57,7 @@ class iCalendar{
     }
     private function evento($e){
         $evento="BEGIN:VEVENT\r\nDTSTAMP:".$this->dt(time());
-        $evento=$evento."\r\nUID:".strval(dechex($e["start"]))."00000\r\n";
+        $evento=$evento."\r\nUID:".$this->id($e)."\r\n";
         $evento=$evento."SEQUENCE:0\r\n";
         $evento=$evento."DTSTART:".$this->dt($e["start"])."\r\n";
         $evento=$evento."SUMMARY:".$this->wrapLine($e["desc"],8)."\r\n";
